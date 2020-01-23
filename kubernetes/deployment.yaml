@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microbot 
+  labels:
+    app: microbot
+spec:
+  selector:
+    matchLabels:
+      app: microbot
+  strategy:
+    type: Recreate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: microbot
+    spec:
+      containers:
+      - image: localhost/testounet:latest
+        name: microbot
+        ports:
+        - containerPort: 80
+          name: microport
