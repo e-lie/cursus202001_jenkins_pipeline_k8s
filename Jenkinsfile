@@ -14,7 +14,7 @@ metadata:
 spec:
   containers:
     - name: python
-      image: python:3.7  # use a version that matches your K8s version
+      image: python:3.7
       command:
         - cat
       tty: true
@@ -38,9 +38,13 @@ spec:
 """
     }
   }
+  node {
+    checkout scm 
+  }
 
   stages {
     stage('Test python') {
+
       steps {
         container('python') {
           sh "pip install -r requirements.txt"
@@ -52,8 +56,8 @@ spec:
     stage('Build image') {
       steps {
         container('docker') {
-          sh "docker build -t localhost:5000/testounet:latest ."
-          sh "docker push localhost:5000/testounet:latest"
+          sh "docker build -t localhost:5000/pythontest:latest ."
+          sh "docker push localhost:5000/pythontest:latest"
         }
       }
     }
