@@ -6,7 +6,7 @@ metadata:
     app: pythontest
 spec:
   ports:
-    - port: 80
+    - port: 5000
       nodePort: 31000
   selector:
     app: pythontest 
