@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: microbot 
+  name: pythontest 
   labels:
-    app: microbot
+    app: pythontest
 spec:
   selector:
     matchLabels:
-      app: microbot
+      app: pythontest
   strategy:
     type: Recreate
   replicas: 1
   template:
     metadata:
       labels:
-        app: microbot
+        app: pythontest
     spec:
       containers:
-      - image: localhost/testounet:latest
-        name: microbot
+      - image: localhost/pythontest:latest
+        name: pythontest
         ports:
         - containerPort: 80
           name: microport

@@ -13,6 +13,11 @@ metadata:
     component: ci
 spec:
   containers:
+    - name: python
+      image: python:3.7  # use a version that matches your K8s version
+      command:
+        - cat
+      tty: true
     - name: docker
       image: docker
       command:
@@ -35,6 +40,15 @@ spec:
   }
 
   stages {
+    stage('Test python') {
+      steps {
+        container('python') {
+          sh "pip install -r requirements.txt"
+          sh "python test.py"
+        }
+      }
+    }
+
     stage('Build image') {
       steps {
         container('docker') {
