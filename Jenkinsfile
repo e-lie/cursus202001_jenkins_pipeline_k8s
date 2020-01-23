@@ -38,10 +38,7 @@ spec:
 """
     }
   }
-  node {
-    checkout scm 
-  }
-
+  
   stages {
     stage('Test python') {
 
